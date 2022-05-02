@@ -1,14 +1,15 @@
-import Topbar from "../../components/topbar/Topbar";
+import React from "react";
+//import Topbar from "../../components/topbar/Topbar";
 import Feed from "../../components/feed/Feed";
 import "./home.css"
 
 export default function Home() {
   return (
     <>
-      <Topbar />
+      {/* <Topbar />
       <div className="homeContainer">
-        <Feed/>
-      </div>
+    </div> */}
+    <Feed/>
     </>
   );
 }

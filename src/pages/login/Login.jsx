@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import React from "react";
+//import { useEffect } from "react";
 import "./login.css";
 
 export default function Login() {
 
-  useEffect(() => {
-    console.log("ltest");
-  }, [])
+  // useEffect(() => {
+  //   console.log("ltest");
+  // }, [])
   
   return (
     <div className="login">
