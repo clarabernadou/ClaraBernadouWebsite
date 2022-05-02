@@ -11,13 +11,26 @@ export default function Register() {
           <img className="registerLogo" src={Logo} />
         </header>
         <div className="registerBody">
+
           <form className="registerForm">
-            <input placeholder="Username" className="registerInput" />
-            <input placeholder="Email" className="registerInput" />
-            <input placeholder="Password" className="registerInput" />
+            <input 
+              placeholder="Username" 
+              className="registerInput" />
+            <input 
+              placeholder="Email" 
+              className="registerInput" />
+            <input 
+              placeholder="Password" 
+              className="registerInput" />
             <span className="haveAccount">Already have an account ? Log in</span>
-            <button className="registerButton">Sign Up</button>
+            <button 
+              className="registerButton" 
+              type='primary' 
+              htmlType='submit'>
+              Sign Up
+            </button>
           </form>
+          
         </div>
       </div>
     </div>
