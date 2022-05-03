@@ -14,6 +14,7 @@ export default function Post({ post }) {
     setIsLiked(!isLiked);
     setDislike(isDisliked ? dislike - 1 : dislike + 1);
     setIsDisliked(!isDisliked);
+    
   };
   return (
     <div className="post">

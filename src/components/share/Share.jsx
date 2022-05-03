@@ -1,17 +1,36 @@
 import "./share.css";
 import React from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 export default function Share(props) {
   const [description, setDescription] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
 
-  function onCreatePost(e) {
+  const post = async (e) => {
     e.preventDefault();
-    console.log(description);
+
+    const setUser = props.setUser
+
+    // const config = {
+    //   headers: {
+    //     'Authorization': `Bearer${props.token}`
+    //   }
+    // }
+
+    let form = new FormData();
+    form.append('image', selectedFile)
+    form.append('name', setUser) 
+    form.append('descrition', description)
+
+    const response = await axios.post('http://localhost:8080/api/home/', form)
+
+    props.setPosts([...props.posts, response.data])
+
+    setDescription('')
+    setSelectedFile('')
   }
-
-
 
   return (
     <div className="share">
@@ -24,7 +43,7 @@ export default function Share(props) {
             </div>
           </div>
         </div>
-        <form onSubmit={onCreatePost}>
+        <form>
           <div className="postInput">
             <input
               type="text"
@@ -36,11 +55,25 @@ export default function Share(props) {
             />
           </div>
             <div className="mediasOption">
-              <div className="shareIcon"/>
+              <input 
+                className="shareFiles"
+                name="file"
+                type="file"
+                id="file"
+                onChange={(e) => {setSelectedFile(e.target.files[0])}}
+                aria-label="file-input"
+              />
+              <label 
+                className="shareIcon"
+                htmlFor="file" 
+                aria-label="icon-upload"
+              >
+                <FileUploadIcon />
+              </label>
             </div>
             <div className="postButton">
               <button 
-                type='submit' 
+                onClick={(e) => { post(e)}}
                 className="shareButton">
                 Share
                 </button>
