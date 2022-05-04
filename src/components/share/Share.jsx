@@ -4,32 +4,37 @@ import { useState } from "react";
 import axios from "axios";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
-export default function Share(props) {
+export default function Share() {
   const [description, setDescription] = useState('');
-  const [selectedFile, setSelectedFile] = useState('');
-
+  //const [selectedFile, setSelectedFile] = useState('');
+  
   const post = async (e) => {
     e.preventDefault();
 
-    const setUser = props.setUser
+    //const setUser = props.setUser
+    const setUser = 15
+    console.log(setUser)
 
-    // const config = {
-    //   headers: {
-    //     'Authorization': `Bearer${props.token}`
-    //   }
-    // }
+    console.log("ceci est un commentaire");
+    console.log(description);
+    //  const config = {
+    //    headers: {
+    //     //  'Authorization': `Bearer${props.token}`
+    //     "Content-Type": "application/json"
+    //    }
+    //  }
 
     let form = new FormData();
-    form.append('image', selectedFile)
-    form.append('name', setUser) 
-    form.append('descrition', description)
+    //form.append('imageUrl', selectedFile)
+    form.append('userId', setUser) 
+    form.append('description', description)
 
-    const response = await axios.post('http://localhost:8080/api/home/', form)
+    const response = await axios.post('http://localhost:8080/api/home/', {description})
+    console.log(response)
+    //props.setPosts([...props.posts, response.data])
 
-    props.setPosts([...props.posts, response.data])
-
-    setDescription('')
-    setSelectedFile('')
+    //setDescription('')
+    //setSelectedFile('')
   }
 
   return (
@@ -60,7 +65,6 @@ export default function Share(props) {
                 name="file"
                 type="file"
                 id="file"
-                onChange={(e) => {setSelectedFile(e.target.files[0])}}
                 aria-label="file-input"
               />
               <label 

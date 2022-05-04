@@ -1,6 +1,7 @@
 import React from "react";
 //import { useEffect } from "react";
-import "./login.css";
+import "../sign.css";
+import Logo from "../../assets/logo/groupomania-logo.png"
 
 export default function Login() {
 
@@ -9,20 +10,33 @@ export default function Login() {
   // }, [])
   
   return (
-    <div className="login">
-      <div className="loginWrapper">
-        <div className="loginLeft">
-          <h3 className="loginLogo">Groupomania</h3>
-        </div>
-        <div className="loginRight">
-          <div className="loginBox">
-            <input placeholder="Email" className="loginInput" />
-            <input placeholder="Password" className="loginInput" />
-            <button className="haveAccount">You do not have an account ? Sign up</button>
-            <button className="loginButton">Log In</button>
-          </div>
-        </div>
+    <div className="sign">
+    <div className="signWrapper">
+      <header className="signHeader">
+        <img className="signLog" src={Logo} />
+      </header>
+      <div className="signBody">
+        <form className="signForm">
+          <input 
+            placeholder="Email" 
+            className="signInp"
+          />
+          <input 
+            placeholder="Password" 
+            className="signInp"
+          />
+          <button
+            className="signHavAcc"
+          >
+            Already have an account ? Sign Up
+          </button>
+          <button 
+            className="signBtn">
+            Sign In
+          </button>
+        </form>      
       </div>
     </div>
+  </div>
   );
 }

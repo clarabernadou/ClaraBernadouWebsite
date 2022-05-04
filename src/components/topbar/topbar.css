@@ -32,3 +32,28 @@
   object-fit: cover;
   cursor: pointer;
 }
+
+/* ################ MEDIA QUERY MOBILE ################ */
+@media screen and (min-width: 320px) and (max-width:767px) {
+  .topbarContainer {
+    height: 4em;
+  }
+
+  .topbarLeft {
+    margin-left: 1em;
+  }
+
+  .topbarRight{
+    margin-right: 1em;
+  }
+
+  .topbarImg {
+    width: 2em;
+    height: 2em;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+}

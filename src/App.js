@@ -7,15 +7,12 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 
 function App() {
-/*  useEffect(() => {
-    console.log("slt");
-  }, []); */
 
   return (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/signin" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<Register />} />
         </Routes>
