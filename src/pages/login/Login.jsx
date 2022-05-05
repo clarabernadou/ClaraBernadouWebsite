@@ -1,14 +1,8 @@
-import React from "react";
-//import { useEffect } from "react";
 import "../sign.css";
+import React, {} from "react";
 import Logo from "../../assets/logo/groupomania-logo.png"
 
 export default function Login() {
-
-  // useEffect(() => {
-  //   console.log("ltest");
-  // }, [])
-  
   return (
     <div className="sign">
     <div className="signWrapper">
@@ -18,11 +12,11 @@ export default function Login() {
       <div className="signBody">
         <form className="signForm">
           <input 
-            placeholder="Email" 
+            placeholder="Email"
             className="signInp"
           />
           <input 
-            placeholder="Password" 
+            placeholder="Password"
             className="signInp"
           />
           <button

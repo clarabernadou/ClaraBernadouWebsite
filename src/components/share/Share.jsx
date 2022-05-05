@@ -1,42 +1,54 @@
-import "./share.css";
-import React from "react";
+/* ############################# IMPORT ############################# */
+// CSS
+import "./share.css"; 
+// Axios
+import axios from "axios"; 
+// React and utils
+import React from "react";  
 import { useState } from "react";
-import axios from "axios";
+// Icons from Mui
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
-export default function Share() {
+/* ########################################################## */
+// Create a function
+export default function Share(props) {
+  // Add useState
   const [description, setDescription] = useState('');
-  //const [selectedFile, setSelectedFile] = useState('');
-  
+  const [selectedFile, setSelectedFile] = useState('');
+  // Create a async event
   const post = async (e) => {
     e.preventDefault();
 
+    // Add the user
     //const setUser = props.setUser
     const setUser = 15
     console.log(setUser)
-
-    console.log("ceci est un commentaire");
     console.log(description);
-    //  const config = {
-    //    headers: {
-    //     //  'Authorization': `Bearer${props.token}`
-    //     "Content-Type": "application/json"
-    //    }
-    //  }
+    console.log(selectedFile)
 
-    let form = new FormData();
-    //form.append('imageUrl', selectedFile)
-    form.append('userId', setUser) 
-    form.append('description', description)
-
-    const response = await axios.post('http://localhost:8080/api/home/', {description})
-    console.log(response)
-    //props.setPosts([...props.posts, response.data])
-
-    //setDescription('')
-    //setSelectedFile('')
+    // Add the config
+     const config = {
+      headers: {
+        //'Authorization': `Bearer${props.token}`,
+        "Content-Type": "application/json"
+      }
   }
 
+    let form = new FormData();
+    form.append('userId', setUser)
+    form.append('description', description)
+    form.append('imageUrl', selectedFile)
+
+    const response = await axios.post('http://localhost:8080/api/home/', {selectedFile, description}, config)
+    console.log(response)
+    
+    props.setPosts([...props.posts, response.data])
+
+    setDescription('')
+    setSelectedFile('')
+  }
+
+/* ############################# FORM ############################# */
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -66,6 +78,8 @@ export default function Share() {
                 type="file"
                 id="file"
                 aria-label="file-input"
+                value={selectedFile}
+                onChange={(e) => setSelectedFile(e.target.value)}
               />
               <label 
                 className="shareIcon"
