@@ -1,54 +1,41 @@
-/* ############################# IMPORT ############################# */
-// CSS
+// Import CSS
 import "./share.css"; 
-// Axios
-import axios from "axios"; 
-// React and utils
+// Import utils
+import axios from "axios";
 import React from "react";  
 import { useState } from "react";
-// Icons from Mui
+// Import icons
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
-/* ########################################################## */
 // Create a function
 export default function Share(props) {
-  // Add useState
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
-  // Create a async event
+  
   const post = async (e) => {
     e.preventDefault();
-
-    // Add the user
-    //const setUser = props.setUser
-    const setUser = 15
-    console.log(setUser)
-    console.log(description);
-    console.log(selectedFile)
-
+    
     // Add the config
      const config = {
       headers: {
-        //'Authorization': `Bearer${props.token}`,
         "Content-Type": "application/json"
       }
-  }
+    }
 
-    let form = new FormData();
-    form.append('userId', setUser)
-    form.append('description', description)
-    form.append('imageUrl', selectedFile)
+    const data = {
+      userId: localStorage.getItem('userId'),
+      description: description,
+      imageUrl: selectedFile
+    };
 
-    const response = await axios.post('http://localhost:8080/api/home/', {selectedFile, description}, config)
-    console.log(response)
+    const response = await axios.post('http://localhost:8080/api/publication/create', data, config)
+      console.log('Error')
     
     props.setPosts([...props.posts, response.data])
 
     setDescription('')
     setSelectedFile('')
   }
-
-/* ############################# FORM ############################# */
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -56,7 +43,7 @@ export default function Share(props) {
           <img className="shareProfileImg" src="/assets/person/1.jpeg" alt="" />
           <div className="shareInfosContainer">
             <div className="shareName">
-              <span className="shareProfileName">Username</span>
+              <span className="shareProfileName">{localStorage.getItem('username')}</span>
             </div>
           </div>
         </div>

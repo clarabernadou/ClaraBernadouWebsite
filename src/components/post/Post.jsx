@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { MoreVert } from "@mui/icons-material";
-import { Users } from "../../dummyData";
+// Import CSS
 import "./post.css";
+// Import utils
+import React, { useState} from "react";
+// Import icons
+import { MoreVert } from "@mui/icons-material";
 
+// Create a function
 export default function Post({ post }) {
   const [like, setLike] = useState(post.like);
   const [dislike, setDislike] = useState(post.dislike);
@@ -14,8 +17,7 @@ export default function Post({ post }) {
     setIsLiked(!isLiked);
     setDislike(isDisliked ? dislike - 1 : dislike + 1);
     setIsDisliked(!isDisliked);
-    
-  };
+}
   return (
     <div className="post">
       <div className="postWrapper">
@@ -23,13 +25,13 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
+              src=""
               alt=""
             />
             <div className="postInfosContainer">
               <div className="postName">
                 <span className="postProfileName">
-                  {Users.filter((u) => u.id === post?.userId)[0].username}
+                  {localStorage.getItem('username')}
                 </span>
               </div>
             </div>
@@ -39,12 +41,12 @@ export default function Post({ post }) {
           </div>
         </div>
         <div className="postCenter">
-          <img className="postImg" src={post.photo} alt="" />
-          <span className="postText">{post?.desc}</span>
+          <img className="postImg" src="" alt="" />
+          <span className="postText">D</span>
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <span className="postCommentText">{post.comment} comments</span>
+            <span className="postCommentText">Nombre comments</span>
           </div>
           <div className="postBottomRight">
             <img className="likeIcon" src="" onClick={likeHandler} alt="" />

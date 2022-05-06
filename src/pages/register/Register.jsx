@@ -17,8 +17,8 @@ const register = async (e) => {
   form.append('Email', email)
   form.append('Password', password)
   
-
-  const response = axios.post('http://localhost:8080/api/auth/signup', {username, email, password})
+  const response = await axios.post('http://localhost:8080/api/auth/signup', {username, email, password})
+  window.location.href="/signin"
   console.log(response)
   
   //props.setUsers([...props.users, response.data])
@@ -26,7 +26,13 @@ const register = async (e) => {
   setUsername('')
   setEmail('')
   setPassword('')
+
 }
+const NotHaveAccount = e => {
+    e.preventDefault()
+    window.location.href = "/signin";
+  }
+
 
 return (
   <div className="sign">
@@ -37,32 +43,35 @@ return (
       <div className="signBody">
         <form className="signForm">
           <input 
+            type="text"
             placeholder="Username" 
             className="signInp" 
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <input 
+            type="email"
             placeholder="Email" 
             className="signInp"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input 
+            type="password"
             placeholder="Password" 
             className="signInp" 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button 
-            to={{pathname: "/signin"}} 
+          <button  
             className="signHavAcc"
+            onClick={ NotHaveAccount }
           >
             Already have an account ? Log in
           </button>
           <button 
             className="signBtn" 
-            onClick={(e) => { register(e)}}>
+            onClick={ register }>
             Sign Up
           </button>
         </form>      

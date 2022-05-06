@@ -8,14 +8,12 @@ import Register from "./pages/register/Register";
 
 function App() {
   const [username, setUsername] = useState('')
-
-
   return (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} username={username} />
-          <Route path="/signin" element={<Login />} setUsername={setUsername} username={username} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/signin" element={<Login />} setUsername={setUsername} username={username}  />
+          <Route path="/profile" element={<Profile />} username={username} />
           <Route path="/signup" element={<Register />} />
         </Routes>
       </BrowserRouter>
