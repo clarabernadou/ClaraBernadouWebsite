@@ -1,5 +1,9 @@
+// CSS
 import "./topbar.css";
+// Utils
 import React from "react";
+// Images
+import Random from "../../assets/personne-random.png";
 
 export default function Topbar() {
   const home = e => {
@@ -16,7 +20,7 @@ export default function Topbar() {
         <span className="logo" onClick={home}>Groupomania</span>
       </div>
       <div className="topbarRight">
-        <img src="/assets/person/1.jpeg" alt="" className="topbarImg" onClick={profile}/>
+        <img src={Random} alt="" className="topbarImg" onClick={profile}/>
       </div>
     </div>
   );

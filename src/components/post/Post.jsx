@@ -1,23 +1,23 @@
 // Import CSS
 import "./post.css";
 // Import utils
-import React, { useState} from "react";
+import React, { useState } from "react";
 // Import icons
 import { MoreVert } from "@mui/icons-material";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+// Images
+import Random from "../../assets/personne-random.png";
 
-// Create a function
 export default function Post({ post }) {
-  const [like, setLike] = useState(post.like);
-  const [dislike, setDislike] = useState(post.dislike);
+  const [like, setLike] = useState(post.likes);
   const [isLiked, setIsLiked] = useState(false);
-  const [isDisliked, setIsDisliked] = useState(false);
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
-    setDislike(isDisliked ? dislike - 1 : dislike + 1);
-    setIsDisliked(!isDisliked);
-}
+  };
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -25,7 +25,7 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src=""
+              src={Random}
               alt=""
             />
             <div className="postInfosContainer">
@@ -41,18 +41,18 @@ export default function Post({ post }) {
           </div>
         </div>
         <div className="postCenter">
-          <img className="postImg" src="" alt="" />
-          <span className="postText">D</span>
+          <img className="postImg" src={post.imageUrl} alt="" />
+          <span className="postText">{post.description}</span>
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <span className="postCommentText">Nombre comments</span>
+            <span className="postCommentText">{post.comment} comments</span>
           </div>
           <div className="postBottomRight">
-            <img className="likeIcon" src="" onClick={likeHandler} alt="" />
-            <span className="postLikeCounter">{dislike}</span>
-            <img className="likeIcon" src="" onClick={likeHandler} alt="" />
             <span className="postLikeCounter">{like}</span>
+            <ThumbUpIcon className="likeIcon" onClick={ likeHandler } />
+            <span className="postLikeCounter">{like}</span>
+            <ThumbDownIcon className="likeIcon" onClick={ likeHandler } />
           </div>
         </div>
       </div>

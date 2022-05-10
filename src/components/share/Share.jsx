@@ -6,6 +6,8 @@ import React from "react";
 import { useState } from "react";
 // Import icons
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+// Images
+import Random from "../../assets/personne-random.png";
 
 // Create a function
 export default function Share(props) {
@@ -21,15 +23,7 @@ export default function Share(props) {
         "Content-Type": "application/json"
       }
     }
-
-    const data = {
-      userId: localStorage.getItem('userId'),
-      description: description,
-      imageUrl: selectedFile
-    };
-
-    const response = await axios.post('http://localhost:8080/api/publication/create', data, config)
-      console.log('Error')
+    const response = await axios.post('http://localhost:8080/api/publication/create', {description, selectedFile}, config)
     
     props.setPosts([...props.posts, response.data])
 
@@ -40,7 +34,7 @@ export default function Share(props) {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img className="shareProfileImg" src="/assets/person/1.jpeg" alt="" />
+          <img className="shareProfileImg" src={Random} alt="" />
           <div className="shareInfosContainer">
             <div className="shareName">
               <span className="shareProfileName">{localStorage.getItem('username')}</span>

@@ -1,10 +1,12 @@
-
+// CSS
 import "./profile.css";
-
+// Utils
 import React, {useEffect, useState} from "react";
-
-import Topbar from "../../components/topbar/Topbar";
 import axios from "axios";
+// Components
+import Topbar from "../../components/topbar/Topbar";
+// Images
+import Random from "../../assets/personne-random.png";
 
 export default function Profile() {
   
@@ -12,6 +14,7 @@ export default function Profile() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userId, setUserId] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
   
   useEffect(() => {
     if (!localStorage.getItem('token')) {
@@ -27,13 +30,24 @@ export default function Profile() {
     window.location.href = "/signin";
   }
 
-  const modifyAccount = e => {
+  const modifyAccount = async(e) => {
     e.preventDefault()
+
+    let form = new FormData();
+    form.append('username', username)
+    form.append('Email', email)
+    form.append('Password', password)
+
+    const id = localStorage.getItem('userId')
+    console.log(id)
+    
+    const response = await axios.put(`http://localhost:8080/api/auth/profile/update/${id}`, {username, email, password})
+    console.log(response)
   }
 
   const deleteAccount = async(e) => {
     e.preventDefault()
-    const response = await axios.delete('http://localhost:8080/api/auth/profile', {"username":username, "email":email, "password":password, "userId":userId})
+    const response = await axios.delete('http://localhost:8080/api/auth/profile/delete', {"username":username, "email":email, "password":password, "userId":userId})
     if(response){
     return window.location.href = "/signin";
     }else{
@@ -44,23 +58,54 @@ export default function Profile() {
     setEmail('')
     setPassword('')
     setUserId('')
+    setSelectedFile('')
   }
+  
 
   return (
     <>
       <Topbar />
       <div className="profile">
           <div className="profileTop">
-              <img
-                className="profileUserImg"
-                src="assets/person/7.jpeg"
-                alt=""
+            <input 
+                className="btnProfileImg"
+                name="file"
+                type="file"
+                id="file"
+                aria-label="file-input"
+                value={selectedFile}
+                onChange={(e) => setSelectedFile(e.target.value)}
               />
+              <label
+                htmlFor="file" 
+                aria-label="icon-upload"
+              >
+                <img className="profileUserImg" src={Random} />
+              </label>
           <div className="registerBox">
-            <input placeholder="Username" className="loginInput" />
-            <input placeholder="Email" className="loginInput" />
-            <input placeholder="Password" className="loginInput" />
-            <button 
+            <input 
+              type="text" 
+              placeholder="Username"
+              className="loginInput" 
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input 
+              type="email" 
+              placeholder="Email" 
+              className="loginInput" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password" 
+              placeholder="Password" 
+              className="loginInput" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="submit" 
               className="loginButton"
               onClick={ modifyAccount }
               >

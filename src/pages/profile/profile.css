@@ -12,17 +12,20 @@
     margin-top: 2em;
 }
 
-.profileUserImg{
-    width: 6em;
-    height: 6em;
-    border-radius: 50%;
-    object-fit: cover;
+.btnProfileImg{
+  display: none;
+}
+
+.profileUserImg {
+  width: 7em;
+  height: 7em;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .registerBox{
     height: 15em;
     width: 25em;
-    padding: 2em;
     background-color: white;
     border-radius: 2em;
     display: flex;
