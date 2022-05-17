@@ -1,3 +1,5 @@
+// Import CSS
+import "../post/post.css";
 // Import utils
 import React, { useState } from "react";
 // Import icons
@@ -6,11 +8,9 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 // Images
 import Random from "../../assets/personne-random.png";
-// Import CSS
-import "./post.css";
 
-export default function Post({ post }) {
-  const [like, setLike] = useState(post.likes);
+export default function Comment({ comment }) {
+  const [like, setLike] = useState(comment.likes);
   const [isLiked, setIsLiked] = useState(false);
 
   const likeHandler = () => {
@@ -41,13 +41,10 @@ export default function Post({ post }) {
           </div>
         </div>
         <div className="postCenter">
-          <img className="postImg" src={post.imageUrl} alt="" />
-          <span className="postText">{post.description}</span>
+          <img className="postImg" src={comment.imageUrl} alt="" />
+          <span className="postText">{comment.description}</span>
         </div>
         <div className="postBottom">
-          <div className="postBottomLeft">
-            <span className="postCommentText">{post.comment} comments</span>
-          </div>
           <div className="postBottomRight">
             <span className="postLikeCounter">{like}</span>
             <ThumbUpIcon className="likeIcon" onClick={ likeHandler } />

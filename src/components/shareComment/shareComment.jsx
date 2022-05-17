@@ -1,12 +1,13 @@
+// Import CSS
+import "../share/share.css"; 
 // Import utils
-import React, { useState } from "react";
 import axios from "axios";
+import React from "react";  
+import { useState } from "react";
 // Import icons
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 // Images
 import Random from "../../assets/personne-random.png";
-// Import CSS
-import "./share.css"; 
 
 // Create a function
 export default function Share(props) {
@@ -15,31 +16,16 @@ export default function Share(props) {
   
   const post = async (e) => {
     e.preventDefault();
-
     // Add the config
-    console.log('Voici cette image');
-    console.log(selectedFile);
-    // const config = {
-    //   headers: {
-    //      "Content-Type": "application/json"
-    //    }
-    // }
-    let form = new FormData()
-    form.append('userId', localStorage.getItem('userId'))
-    form.append('image', selectedFile);
-    form.append('description', description);
-    console.log(form.data)
-    console.log(selectedFile)
-      const response = await axios({
-        method: "post",
-        baseURL: 'http://localhost:8080/api/publication/create',
-        headers: {'Content-Type' : 'multipart/form-data'},
-        data: form
-      })
-      console.log(response.data)
-      props.setPosts([...props.posts, response.data])
-      setDescription('')
-      setSelectedFile('')
+     const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+    const response = await axios.post('http://localhost:8080/api/publication/create', {description, selectedFile}, config)
+    props.setPosts([...props.posts, response.data])
+    setDescription('')
+    setSelectedFile('')
   }
   return (
     <div className="share">
@@ -58,7 +44,7 @@ export default function Share(props) {
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="What's in your mind "
+              placeholder="What do you think of this"
               aria-label='content-input'
               className="shareInput"
             />
@@ -70,8 +56,8 @@ export default function Share(props) {
                 type="file"
                 id="file"
                 aria-label="file-input"
-                //value={selectedFile}
-                onChange={(e) => { setSelectedFile(e.target.files[0]) }}
+                value={selectedFile}
+                onChange={(e) => setSelectedFile(e.target.value)}
               />
               <label 
                 className="shareIcon"

@@ -2,8 +2,9 @@
     margin: 2em 15em;
 }
 
-.post {
-    margin: 3em 0;
+.posts {
+    display: flex;
+    flex-direction: column-reverse;
 }
 /* ################ MEDIA QUERY MOBILE ################ */
 @media screen and (min-width: 320px) and (max-width:767px) {
