@@ -1,25 +1,33 @@
-import "../sign.css";
-import Logo from "../../assets/logo/groupomania-logo.png"
+//Import utils
 import React, { useState } from "react";
 import axios from "axios";
+//Import images
+import Logo from "../../assets/logo/groupomania-logo.png"
+//Import CSS
+import "../sign.css";
 
 export default function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    console.log(username)
     
 const register = async (e) => {
-  e.preventDefault()
+  e.preventDefault() //To prevent the default event
 
+  //Form for push infos to array in database
   let form = new FormData();
   form.append('username', username)
   form.append('Email', email)
   form.append('Password', password)
   
+  //Recovery backend to save user information to data
   const response = await axios.post('http://localhost:8080/api/auth/signup', {username, email, password})
-  window.location.href="/signin"
+
+  //TEST
+  console.log('Response console.log (to register the user)')
   console.log(response)
+
+  window.location.href="/signin" //Navigate
   
   //props.setUsers([...props.users, response.data])
 
@@ -28,9 +36,11 @@ const register = async (e) => {
   setPassword('')
 
 }
+
+//Navigate to sign in page
 const NotHaveAccount = e => {
-    e.preventDefault()
-    window.location.href = "/signin";
+    e.preventDefault() //To prevent the default event
+    window.location.href = "/signin"; //Navigate
   }
 
 

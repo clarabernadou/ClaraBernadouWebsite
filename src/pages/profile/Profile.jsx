@@ -1,12 +1,12 @@
-// CSS
-import "./profile.css";
-// Utils
+//Import utils
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-// Components
+//Import components
 import Topbar from "../../components/topbar/Topbar";
-// Images
+//Import images
 //import Random from "../../assets/personne-random.png";
+//Import CSS
+import "./profile.css";
 
 export default function Profile() {
   
@@ -15,39 +15,57 @@ export default function Profile() {
   const [selectedFile, setSelectedFile] = useState('');
   const [imageUrl, setImageUrl] = useState('');
 
+  //Use effect which launches the action as soon as the page loads
   useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      window.location.href = "/signin";
+    if (!localStorage.getItem('token')) { //Recovery token in local storage
+      window.location.href = "/signin"; //Navigate
     }
   }, []);
 
+  //To disconnect the user
   const logout = e => {
-    e.preventDefault()
+    e.preventDefault() //To prevent the default event
+
+    //Delete informations from local storage
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('email');
-    window.location.href = "/signin";
+
+    window.location.href = "/signin"; //Navigate
   }
 
+  //To edit account information
   const modifyAccount = async(e) => {
-    e.preventDefault()
-    const id = localStorage.getItem('userId');
+    e.preventDefault() //To prevent the default event
+    const id = localStorage.getItem('userId'); //Recovery userId in localstorage
+
+    //Recovery the backend with Axios
     const response = await axios.put(`http://localhost:8080/api/auth/profile/update/${id}`, {username, email, imageUrl})
+
+    //TEST
+    console.log('-----------------------------------------')
+    console.log('Response console.log (update profile) ⬇️')
     console.log(response);
-      localStorage.setItem("username", username);
-      localStorage.setItem("email", email);
-      localStorage.setItem("imageUrl", imageUrl);
+
+    //Add the new information in localstorage
+    localStorage.setItem("username", username);
+    localStorage.setItem("email", email);
+    localStorage.setItem("imageUrl", imageUrl);
   }
 
+  //To delete the user account
   const deleteAccount = async(e) => {
-    e.preventDefault()
-    const id = localStorage.getItem('userId');
+    e.preventDefault() //To prevent the default event
+    const id = localStorage.getItem('userId'); //Recovery userId in localstorage
 
+    //Recovery the backend with Axios
     const response = await axios.delete(`http://localhost:8080/api/auth/profile/delete/${id}`)
+
+    //Create a condition
     if(response){
-      return window.location.href = "/signin";
+      return window.location.href = "/signin"; //Navigate
     }else{
-      console.log("Error")
+      console.log("Error") //Error
     }
 
     setUsername('')
@@ -55,16 +73,21 @@ export default function Profile() {
     setSelectedFile('')
     setImageUrl('')
   }
-  console.log(selectedFile);
   
+  //To upload a profile picture
   const uploadFile = async(file)=> {
-    const id = localStorage.getItem('userId');
+    const id = localStorage.getItem('userId'); //Recovery userId in localstorage
 
+    //Form for push infos to array in database
     const formData = new FormData();
     formData.append('imageUrl', file.name);
 
-
+    //Recovery the backend with Axios
     const response = await axios.post(`http://localhost:8080/api/upload_file/${id}`, formData);
+
+    //TEST
+    console.log('-----------------------------------------')
+    console.log('Response console.log (update profile) ⬇️')
     console.log(response);
   }
 

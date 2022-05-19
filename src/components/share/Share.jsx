@@ -14,30 +14,45 @@ export default function Share(props) {
   const [selectedFile, setSelectedFile] = useState('');
   
   const post = async (e) => {
-    e.preventDefault();
-
-    // Add the config
-    console.log('Voici cette image');
-    console.log(selectedFile);
+    e.preventDefault(); //To prevent the default event
+    
+    //Add the config
     // const config = {
     //   headers: {
     //      "Content-Type": "application/json"
     //    }
     // }
+
+    //Form for push infos to array in database
     let form = new FormData()
     form.append('userId', localStorage.getItem('userId'))
     form.append('image', selectedFile);
     form.append('description', description);
+
+    // TEST
+    console.log('-----------------------------------------')
+    console.log('Form data console.log ⬇️')
     console.log(form.data)
+    console.log('-----------------------------------------')
+    console.log('SelectedFile console.log (Image) ⬇️');
     console.log(selectedFile)
+
+      //Recovery the backend with Axios
       const response = await axios({
         method: "post",
         baseURL: 'http://localhost:8080/api/publication/create',
         headers: {'Content-Type' : 'multipart/form-data'},
         data: form
       })
+
+      //TEST
+      console.log('-----------------------------------------')
+      console.log('Response data console.log ⬇️')
       console.log(response.data)
+
+
       props.setPosts([...props.posts, response.data])
+      
       setDescription('')
       setSelectedFile('')
   }
@@ -70,7 +85,6 @@ export default function Share(props) {
                 type="file"
                 id="file"
                 aria-label="file-input"
-                //value={selectedFile}
                 onChange={(e) => { setSelectedFile(e.target.files[0]) }}
               />
               <label 

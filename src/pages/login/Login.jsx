@@ -1,26 +1,29 @@
-// Import CSS
+//Import CSS
 import "../sign.css";
-// Import utils
+//Import utils
 import React, { useState } from "react";
 import axios from "axios";
-// Import logo
+//Import logo
 import Logo from "../../assets/logo/groupomania-logo.png"
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   //const setUsername = props.setUsername
-  console.log(email)
 
   const haveAccount = e => {
-    e.preventDefault()
-    window.location.href = "/signup";
+    e.preventDefault() //To prevent the default event
+    window.location.href = "/signup"; //Navigate
   }
 
   const login = async(e) => {
-    e.preventDefault()
+    e.preventDefault() //To prevent the default event
+
+    //Recovery the backend with Axios
     const response = await axios.post("http://localhost:8080/api/auth/signin", {"email": email, "password": password});
+    //Create condition
     if (response.data.token) {
+      //Add the new information in localstorage
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.username);
       localStorage.setItem("email", response.data.email);

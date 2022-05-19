@@ -1,23 +1,25 @@
-// CSS
+//Import CSS
 import "./topbar.css";
-// Utils
+//Import utils
 import React from "react";
-// Images
+//Import images
 import Random from "../../assets/personne-random.png";
+//Import logo
+import Logo from "../../assets/logo/groupomania-logo.png"
 
 export default function Topbar() {
   const home = e => {
-    e.preventDefault()
-    window.location.href = "/";
+    e.preventDefault() //To prevent the default event
+    window.location.href = "/"; //Navigate
   }
   const profile = e => {
-    e.preventDefault()
-    window.location.href = "/profile";
+    e.preventDefault() //To prevent the default event
+    window.location.href = "/profile"; //Navigate
   }
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="logo" onClick={home}>Groupomania</span>
+        <img className="logo" onClick={home} src={Logo} />
       </div>
       <div className="topbarRight">
         <img src={Random} alt="" className="topbarImg" onClick={profile}/>

@@ -1,22 +1,31 @@
-// Import utils
+//Import utils
 import React, { useState } from "react";
-// Import icons
+//Import icons
 import { MoreVert } from "@mui/icons-material";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-// Images
+//Images
 import Random from "../../assets/personne-random.png";
-// Import CSS
+//Import CSS
 import "./post.css";
 
 export default function Post({ post }) {
-  const [like, setLike] = useState(post.likes);
-  const [isLiked, setIsLiked] = useState(false);
+  
+  const [like,setLike] = useState(0)
+  const [dislike,setDislike] = useState(0)
 
-  const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked);
-  };
+  const [isLiked,setIsLiked] = useState(false)
+  const [isDisliked,setIsDisliked] = useState(false)
+  //Add a like on click
+  const likeHandler =()=>{
+    setLike(isLiked ? like-1 : like+1)
+    setIsLiked(!isLiked)
+  }
+  //Add a dislike on click
+  const dislikeHandler =()=>{
+    setDislike(isDisliked ? dislike-1 : dislike+1)
+    setIsDisliked(!isDisliked)
+  }
 
   return (
     <div className="post">
@@ -31,7 +40,7 @@ export default function Post({ post }) {
             <div className="postInfosContainer">
               <div className="postName">
                 <span className="postProfileName">
-                  {localStorage.getItem('username')}
+                  {}
                 </span>
               </div>
             </div>
@@ -51,8 +60,8 @@ export default function Post({ post }) {
           <div className="postBottomRight">
             <span className="postLikeCounter">{like}</span>
             <ThumbUpIcon className="likeIcon" onClick={ likeHandler } />
-            <span className="postLikeCounter">{like}</span>
-            <ThumbDownIcon className="likeIcon" onClick={ likeHandler } />
+            <span className="postLikeCounter">{dislike}</span>
+            <ThumbDownIcon className="likeIcon" onClick={ dislikeHandler } />
           </div>
         </div>
       </div>

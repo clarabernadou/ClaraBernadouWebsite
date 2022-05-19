@@ -6,18 +6,28 @@ import Share from "../share/Share";
 import "./feed.css";
 
 export default function Feed(props) {
+
+  //Use effect which launches the action as soon as the page loads
   useEffect(() => {
     async function fetchData(){
-      let data = await fetch('http://localhost:8080/api/publications')
-      console.log('Ceci est la response GET Feed')
-      console.log(data)
+      let data = await fetch('http://localhost:8080/api/publications') //Recovery data
       data = await data.json()
+
+      //TEST
+      console.log('-----------------------------------------')
+      console.log('Data console.log (return all publications) ⬇️')
       console.log(data);
+
       props.setPosts(data)
     }
     fetchData();
   },[])
+
+  //TEST
+  console.log('-----------------------------------------')
+  console.log('Props posts console.log ⬇️')
   console.log(props.posts);
+
   return (
     <div className="feed">
       <div className="feedWrapper">
