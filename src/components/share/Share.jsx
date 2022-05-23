@@ -12,10 +12,9 @@ import "./share.css";
 export default function Share(props) {
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
-  
+
   const post = async (e) => {
     e.preventDefault(); //To prevent the default event
-    
     //Add the config
     // const config = {
     //   headers: {
@@ -25,16 +24,19 @@ export default function Share(props) {
 
     //Form for push infos to array in database
     let form = new FormData()
-    form.append('userId', localStorage.getItem('userId'))
+    form.append('userId', localStorage.getItem('userId'));
+    form.append('username', props.username);
     form.append('image', selectedFile);
     form.append('description', description);
 
-    // TEST
+    console.log(form);
+
+    //TEST
     console.log('-----------------------------------------')
     console.log('Form data console.log ⬇️')
     console.log(form.data)
     console.log('-----------------------------------------')
-    console.log('SelectedFile console.log (Image) ⬇️');
+    console.log('SelectedFile console.log (image) ⬇️');
     console.log(selectedFile)
 
       //Recovery the backend with Axios

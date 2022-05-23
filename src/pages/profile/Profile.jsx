@@ -30,6 +30,7 @@ export default function Profile() {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('email');
+    localStorage.removeItem('userId');
 
     window.location.href = "/signin"; //Navigate
   }

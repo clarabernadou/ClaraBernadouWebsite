@@ -10,7 +10,6 @@ import Random from "../../assets/personne-random.png";
 import "./post.css";
 
 export default function Post({ post }) {
-  
   const [like,setLike] = useState(0)
   const [dislike,setDislike] = useState(0)
 
@@ -26,7 +25,6 @@ export default function Post({ post }) {
     setDislike(isDisliked ? dislike-1 : dislike+1)
     setIsDisliked(!isDisliked)
   }
-
   return (
     <div className="post">
       <div className="postWrapper">
@@ -40,7 +38,7 @@ export default function Post({ post }) {
             <div className="postInfosContainer">
               <div className="postName">
                 <span className="postProfileName">
-                  {}
+                  {post.username}
                 </span>
               </div>
             </div>

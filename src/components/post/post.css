@@ -65,12 +65,13 @@
 .likeIcon{
     width: 24px;
     height: 24px;
-    margin-right: 5px;
+    margin-right: 0.2em;
     cursor: pointer;
 }
 
 .postLikeCounter{
     font-size: 15px;
+    margin-right: 0.2em;
 }
 .likeIcon:active{
   color: red;
