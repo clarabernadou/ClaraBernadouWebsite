@@ -14,20 +14,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.5em
-}
-
-.postTopLeft {
-  display: flex;
-  align-items: center;
-}
-
-.postProfileImg {
-  width: 2.5em;
-  height: 2.5em;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 0.7em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
 }
 
 .postInfosContainer {
@@ -41,6 +29,39 @@
 
 .postProfilePosition {
   font-size: 0.8em;
+}
+
+.deleteModifyBtn{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin: 0em -6em;
+  animation-name: FadeIn;
+  animation-duration: 0.3s;
+  transition-timing-function: linear;
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.deleteBtn{
+  border: none;
+  border-radius: 0.4em;
+  color: #BB1313;
+  background-color: #EDEDED;
+  padding: 0.7em 3em;
+}
+
+.deleteBtn:hover{
+  background-color: lightgray;
+  font-weight: bold;
+  
 }
 
 .postImg{

@@ -39,10 +39,9 @@ const register = async (e) => {
 
 //Navigate to sign in page
 const NotHaveAccount = e => {
-    e.preventDefault() //To prevent the default event
-    window.location.href = "/signin"; //Navigate
-  }
-
+  e.preventDefault() //To prevent the default event
+  window.location.href = "/signin"; //Navigate
+}
 
 return (
   <div className="sign">

@@ -56,6 +56,13 @@
     font-weight: 500;
     cursor: pointer;
     margin-top: 1em;
+    transition-property: background-color;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+  }
+
+  .signBtn:hover{
+    background-color: #254BAD;
   }
   
   .signHavAcc{

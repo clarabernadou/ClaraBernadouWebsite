@@ -1,40 +1,37 @@
-//Import utils
-import React, { useState } from "react";
-//Import icons
-import { MoreVert } from "@mui/icons-material";
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-//Images
-import Random from "../../assets/personne-random.png";
 //Import CSS
 import "./post.css";
+//Import utils
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+//Import icons
+import { MoreVert } from "@mui/icons-material";
+
+import ShareComment from "../shareComment/shareComment";
 
 export default function Post({ post }) {
-  const [like,setLike] = useState(0)
-  const [dislike,setDislike] = useState(0)
+  const [showBtn, setShowBtn] = useState(true);
+  useEffect(() => {
+      setShowBtn(false);
+  }, []);
 
-  const [isLiked,setIsLiked] = useState(false)
-  const [isDisliked,setIsDisliked] = useState(false)
-  //Add a like on click
-  const likeHandler =()=>{
-    setLike(isLiked ? like-1 : like+1)
-    setIsLiked(!isLiked)
-  }
-  //Add a dislike on click
-  const dislikeHandler =()=>{
-    setDislike(isDisliked ? dislike-1 : dislike+1)
-    setIsDisliked(!isDisliked)
+  const id = post.id
+
+  const deletePost = async(e) => {
+    e.preventDefault() //To prevent the default event
+
+    //Recovery the backend with Axios
+    const deleteResponse = await axios.delete(`http://localhost:8080/api/publication/delete/${id}`);
+    if(deleteResponse){
+      window.location.reload(false);
+    }else{
+      console.error("error");
+    }
   }
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-              className="postProfileImg"
-              src={Random}
-              alt=""
-            />
             <div className="postInfosContainer">
               <div className="postName">
                 <span className="postProfileName">
@@ -44,7 +41,11 @@ export default function Post({ post }) {
             </div>
           </div>
           <div className="postTopRight">
-            <MoreVert />
+            <MoreVert onClick={() => setShowBtn(!showBtn)} />
+            {showBtn && 
+              <div className="deleteModifyBtn">
+                <button className="deleteBtn" onClick={ deletePost }>Delete</button>
+              </div>}
           </div>
         </div>
         <div className="postCenter">
@@ -55,14 +56,10 @@ export default function Post({ post }) {
           <div className="postBottomLeft">
             <span className="postCommentText">{post.comment} comments</span>
           </div>
-          <div className="postBottomRight">
-            <span className="postLikeCounter">{like}</span>
-            <ThumbUpIcon className="likeIcon" onClick={ likeHandler } />
-            <span className="postLikeCounter">{dislike}</span>
-            <ThumbDownIcon className="likeIcon" onClick={ dislikeHandler } />
-          </div>
         </div>
       </div>
+      <hr />
+      <ShareComment />
     </div>
   );
 }
