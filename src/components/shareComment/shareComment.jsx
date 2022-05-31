@@ -1,7 +1,6 @@
 // Import utils
 import React, { useState } from "react";
 import axios from "axios";
-// Import CSS
 
 // Create a function
 export default function Share(props) {
@@ -10,40 +9,27 @@ export default function Share(props) {
   const comment = async (e) => {
     e.preventDefault(); //To prevent the default event
     //Add the config
-    // const config = {
-    //   headers: {
-    //      "Content-Type": "application/json"
-    //    }
-    // }
-
-    //Form for push infos to array in database
-    let form = new FormData()
-    form.append('userId', localStorage.getItem('userId'));
-    form.append('username', props.username);
-    form.append('descriptionComment', descriptionComment);
-
-    console.log(form);
-
-    //TEST
-    console.log('-----------------------------------------')
-    console.log('Form data console.log ⬇️')
-    console.log(form.data)
+    const config = {
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }
+    console.log(config);
 
       //Recovery the backend with Axios
-      const response = await axios({
-        method: "post",
-        baseURL: `http://localhost:8080/api/comments/createComment`,
-        headers: {'Content-Type' : 'multipart/form-data'},
-        data: form
-      })
-
+      const response = await axios.post(`http://localhost:8080/api/:publicationId/comments`, {
+        username: localStorage.getItem('username'),
+        descriptionComment: descriptionComment,
+        publicationId: props.publicationId,
+      }, config);
+      console.log("ok")
       //TEST
       console.log('-----------------------------------------')
       console.log('Response data console.log ⬇️')
       console.log(response.data)
 
 
-      props.setComments([...props.comments, response.data])
+      //props.setComments([...props.comments, response.data])
       
       setDescriptionComment('')
   }
@@ -62,7 +48,7 @@ export default function Share(props) {
               type="text"
               value={descriptionComment}
               onChange={(e) => setDescriptionComment(e.target.value)}
-              placeholder="Write whatever you want..."
+              placeholder="Write a comment..."
               aria-label='content-input'
               className="shareInput"
             />

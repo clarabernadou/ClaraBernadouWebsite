@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 //Import icons
 import { MoreVert } from "@mui/icons-material";
-
+import Comment from "../comment/Comment";
 import ShareComment from "../shareComment/shareComment";
 
 export default function Post({ post }) {
@@ -59,7 +59,10 @@ export default function Post({ post }) {
         </div>
       </div>
       <hr />
-      <ShareComment />
+      <ShareComment publicationId={post.id} />
+      {post.comments.map((c) => (
+        <Comment key={c.id} comment={c} />
+      ))}
     </div>
   );
 }

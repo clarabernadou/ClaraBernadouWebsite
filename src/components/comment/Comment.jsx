@@ -6,6 +6,7 @@ import { MoreVert } from "@mui/icons-material";
 import "../post/post.css"
 
 export default function Comment({ comment }) {
+  
   return (
     <div className="post">
       <div className="postWrapper">
