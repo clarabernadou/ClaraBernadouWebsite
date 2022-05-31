@@ -22,15 +22,8 @@ export default function Share(props) {
         descriptionComment: descriptionComment,
         publicationId: props.publicationId,
       }, config);
-      console.log("ok")
-      //TEST
-      console.log('-----------------------------------------')
-      console.log('Response data console.log ⬇️')
-      console.log(response.data)
+      console.log(response);
 
-
-      //props.setComments([...props.comments, response.data])
-      
       setDescriptionComment('')
   }
   return (

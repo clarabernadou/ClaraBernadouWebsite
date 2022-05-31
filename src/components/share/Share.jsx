@@ -1,8 +1,6 @@
 // Import utils
 import React, { useState } from "react";
 import axios from "axios";
-// Import icons
-import FileUploadIcon from '@mui/icons-material/FileUpload';
 // Import CSS
 import "./share.css"; 
 
@@ -91,7 +89,6 @@ export default function Share(props) {
                 htmlFor="file" 
                 aria-label="icon-upload"
               >
-                <FileUploadIcon />
               </label>
             </div>
             <div className="postButton">

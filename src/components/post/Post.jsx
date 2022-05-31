@@ -27,6 +27,7 @@ export default function Post({ post }) {
       console.error("error");
     }
   }
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -54,7 +55,7 @@ export default function Post({ post }) {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <span className="postCommentText">{post.comment} comments</span>
+            <span className="postCommentText">{post.comments.length} comments</span>
           </div>
         </div>
       </div>
