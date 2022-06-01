@@ -26,6 +26,11 @@ export default function Share(props) {
 
       setDescriptionComment('')
   }
+
+  const reload = async (e) => {
+    e.preventDefault();
+    window.location.reload(false);
+  }
   return (
       <div className="shareWrapper">
         <div className="shareTop">
@@ -48,7 +53,7 @@ export default function Share(props) {
           </div>
             <div className="postButton">
               <button 
-                onClick={(e) => { comment(e)}}
+                onClick={(e) => { comment(e), reload(e)}}
                 className="shareButton">
                 Comment
               </button>
