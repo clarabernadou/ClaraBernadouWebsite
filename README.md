@@ -10,9 +10,9 @@ This project is create with React
 
 3. Run the command
 
-### `npm start`
+  ### `npm start`
 
-in the console
+  in the console
 
 ______________________________________________________
 
