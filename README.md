@@ -4,7 +4,15 @@ This project is create with React
 
 ## To launch the project
 
+1. Download the two parts of the project (back and front)
+
+2. Open the two files in vscode 
+
+3. Run the command
+
 ### `npm start`
+
+in the console
 
 ______________________________________________________
 
