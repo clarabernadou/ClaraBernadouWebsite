@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Frontend Groupomania
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is create with React
 
-## Available Scripts
-
-In the project directory, you can run:
+## To launch the project
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+______________________________________________________
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Project application
 
-### `npm test`
+## Concept :
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The project consists of building an internal social network for Groupomania employees. The aim of this tool is to facilitate interactions between colleagues. Groupomania's HR department has designed several features to encourage exchanges between colleagues.
 
-### `npm run build`
+## The following are the requirements issued by the steering committee :
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- the presentation of the functionalities must be simple ✅
+- the creation of an account must be simple and possible from a cell phone ✅
+- the profile must contain very little information so that its completion is fast ✅
+- the deletion of the account must be possible ✅
+- access to a forum where employees can post multimedia content must be available ✅
+- access to a forum where employees can post texts must be available ✅
+- users must be able to easily find the latest employee contributions ✅
+- the Groupomania communications manager must be able to moderate interactions between employees
+employees 🔄
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Constraints
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The only constraint is that the client uses a relational database that is manipulated with the SQL language for data storage.
+manipulated with the SQL language for data storage. You will therefore have to take this into account
+when you build your application. You will have to make sure that the user can query the required data from
+required data from SQL and can submit these changes to the
+SQL DATABASE. The connection data must also be secure.
