@@ -7,6 +7,7 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 
 function App() {
+  //Create state for store username
   const [username, setUsername] = useState('')
   return (
       <BrowserRouter>

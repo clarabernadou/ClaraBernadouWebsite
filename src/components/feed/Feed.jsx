@@ -6,31 +6,26 @@ import Share from "../share/Share";
 import "./feed.css";
 
 export default function Feed(props) {
+  //Define username with localStorage
   const username = localStorage.getItem('username');
-  console.log(username);
-  
-  //Use effect which launches the action as soon as the page loads
+  //Add use effect which launches the action as soon as the page loads
   useEffect(() => {
     async function fetchData(){
     //Add the config
     const config = {
       headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}`//Authorization with token stored in localStorage
       }
     }
-      let data = await fetch('http://localhost:8080/api/publications', config) //Recovery data
+    //Recovery all publications
+    let data = await fetch('http://localhost:8080/api/publications', config) 
+      //Put in json
       data = await data.json()
 
       props.setPosts(data)
     }
     fetchData();
   },[])
-
-  //TEST
-  console.log('-----------------------------------------')
-  console.log('Props posts console.log ⬇️')
-  console.log(props.posts);
-
   return (
     <div className="feed">
       <div className="feedWrapper">

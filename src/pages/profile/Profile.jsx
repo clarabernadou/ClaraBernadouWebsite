@@ -1,26 +1,24 @@
+//Import CSS
+import "./profile.css";
 //Import utils
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 //Import components
 import Topbar from "../../components/topbar/Topbar";
-//Import images
-//import Random from "../../assets/personne-random.png";
-//Import CSS
-import "./profile.css";
 
 export default function Profile() {
-  
+  //Create state for store username & email
   const [username, setUsername] = useState(localStorage.getItem("username"));  
   const [email, setEmail] = useState(localStorage.getItem("email"));
 
-  //Use effect which launches the action as soon as the page loads
+  //Use effect for if don't have token navigate in sign in  page
   useEffect(() => {
     if (!localStorage.getItem('token')) { //Recovery token in local storage
-      window.location.href = "/signin"; //Navigate
+      window.location.href = "/signin"; //Navigate to sign in page
     }
   }, []);
 
-  //To disconnect the user
+  //Add function for logout user
   const logout = e => {
     e.preventDefault() //To prevent the default event
 
@@ -30,10 +28,10 @@ export default function Profile() {
     localStorage.removeItem('email');
     localStorage.removeItem('userId');
 
-    window.location.href = "/signin"; //Navigate
+    window.location.href = "/signin"; //Navigate to sign in page
   }
 
-  //To edit account information
+  //Add function for modify account
   const modifyAccount = async(e) => {
     e.preventDefault() //To prevent the default event
     const id = localStorage.getItem('userId'); //Recovery userId in localstorage
@@ -42,30 +40,29 @@ export default function Profile() {
     const response = await axios.put(`http://localhost:8080/api/auth/profile/update/${id}`, {username, email})
 
     //TEST
-    console.log('-----------------------------------------')
-    console.log('Response console.log (update profile) ⬇️')
+    console.log('Response console.log for update profile ⬇️')
     console.log(response);
 
-    //Add the new information in localstorage
+    //Store new informations in localstorage
     localStorage.setItem("username", username);
     localStorage.setItem("email", email);
   }
 
-  //To delete the user account
+  //Add async function for delete user account
   const deleteAccount = async(e) => {
     e.preventDefault() //To prevent the default event
-    const id = localStorage.getItem('userId'); //Recovery userId in localstorage
+    const id = localStorage.getItem('userId'); //Define id with userId in localstorage
 
     //Recovery the backend with Axios
     const response = await axios.delete(`http://localhost:8080/api/auth/profile/delete/${id}`)
-
-    //Create a condition
+    //Create a condition if have response navigate, else error
     if(response){
-      return window.location.href = "/signin"; //Navigate
+      return window.location.href = "/signin"; //Navigate to sign in page
     }else{
-      console.log("Error") //Error
+      console.log("Error")
     }
 
+    //Call state
     setUsername('')
     setEmail('')
   }

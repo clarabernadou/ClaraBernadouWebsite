@@ -1,44 +1,45 @@
+// Import CSS
+import "./share.css"; 
 // Import utils
 import React, { useState } from "react";
 import axios from "axios";
-// Import CSS
-import "./share.css"; 
 
-// Create a function
 export default function Share(props) {
+  //Create state for store description & file
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
 
+  //Add a async function for create post
   const post = async (e) => {
     e.preventDefault(); //To prevent the default event
 
-    //Form for push infos to array in database
+    //Add form for push infos to array in database
     let form = new FormData()
     form.append('userId', localStorage.getItem('userId'));
     form.append('username', props.username);
     form.append('image', selectedFile);
     form.append('description', description);
 
-    console.log(form);
-
       //Recovery the backend with Axios
       const response = await axios({
         method: "post",
         baseURL: `http://localhost:8080/api/publication/create`,
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Authorization': `Bearer ${localStorage.getItem('token')}`, //Authorization with token stored in localStorage
           'Content-Type' : 'multipart/form-data'
         },
         data: form
       })
 
       //TEST
-      console.log('-----------------------------------------')
-      console.log('Response data console.log ⬇️')
-      console.log(response.data)
+      console.log('Create publication ⬇️')
+      console.log(response)
       
+      //Call state
       setDescription('')
       setSelectedFile('')
+
+      //Reload page for appear publication
       window.location.reload();
   }
   return (

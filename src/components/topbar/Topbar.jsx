@@ -8,13 +8,15 @@ import Random from "../../assets/personne-random.png";
 import Logo from "../../assets/logo/groupomania-logo.png"
 
 export default function Topbar() {
+  //Add async function for navigate on click
   const home = e => {
     e.preventDefault() //To prevent the default event
-    window.location.href = "/"; //Navigate
+    window.location.href = "/"; //Navigate to home page
   }
+  //Add async function for navigate on click
   const profile = e => {
     e.preventDefault() //To prevent the default event
-    window.location.href = "/profile"; //Navigate
+    window.location.href = "/profile"; //Navigate to profile page
   }
   return (
     <div className="topbarContainer">

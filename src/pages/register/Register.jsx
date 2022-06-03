@@ -7,19 +7,21 @@ import Logo from "../../assets/logo/groupomania-logo.png"
 import "../sign.css";
 
 export default function Register() {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  //Create state for store username, email & password
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
     
+//Add async function for register a new user
 const register = async (e) => {
   e.preventDefault() //To prevent the default event
-
+  
   //Form for push infos to array in database
   let form = new FormData();
   form.append('username', username)
   form.append('Email', email)
   form.append('Password', password)
-  
+
   //Recovery backend to save user information to data
   const response = await axios.post('http://localhost:8080/api/auth/signup', {username, email, password})
 
@@ -27,10 +29,9 @@ const register = async (e) => {
   console.log('Response console.log (to register the user)')
   console.log(response)
 
-  window.location.href="/signin" //Navigate
-  
-  //props.setUsers([...props.users, response.data])
+  window.location.href="/signin" //Navigate to sign in page 
 
+  //Call state
   setUsername('')
   setEmail('')
   setPassword('')

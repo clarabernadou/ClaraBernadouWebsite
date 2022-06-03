@@ -7,21 +7,22 @@ import axios from "axios";
 import Logo from "../../assets/logo/groupomania-logo.png"
 
 export default function Login() {
+  //Create a state for store email & password
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  //const setUsername = props.setUsername
 
+  //Add function for navigate on click
   const haveAccount = e => {
     e.preventDefault() //To prevent the default event
-    window.location.href = "/signup"; //Navigate
+    window.location.href = "/signup"; //Navigate to sign up page
   }
 
+  //Add async function for login user
   const login = async(e) => {
     e.preventDefault() //To prevent the default event
-
     //Recovery the backend with Axios
     const response = await axios.post("http://localhost:8080/api/auth/signin", {"email": email, "password": password});
-    //Create condition
+    //Create condition if have token, else error
     if (response.data.token) {
       //Add the new information in localstorage
       localStorage.setItem("token", response.data.token);
@@ -33,7 +34,6 @@ export default function Login() {
       console.log("bad email or bad password");
     }
   }
-
   return (
     <div className="sign">
     <div className="signWrapper">
