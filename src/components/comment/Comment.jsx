@@ -17,9 +17,15 @@ export default function Comment({ comment }) {
 
   const deleteComment = async(e) => {
     e.preventDefault() //To prevent the default event
+    //Add the config
+    const config = {
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }
 
     //Recovery the backend with Axios
-    const deleteResponse = await axios.delete(`http://localhost:8080/api/comments/delete/${id}`);
+    const deleteResponse = await axios.delete(`http://localhost:8080/api/comments/delete/${id}`, config);
     if(deleteResponse){
       window.location.reload(false);
     }else{

@@ -1,15 +1,21 @@
 .profile{
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
 .profileTop{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  -webkit-box-shadow: 0px 0px 16px -8px rgb(0 0 0 / 68%);
+  box-shadow: 0px 0px 16px -8px rgb(0 0 0 / 68%);
+  padding: 0em 1em;
+  border-radius: 10px;
+  margin-bottom: 1.5em;
 }
 
 .btnProfileImg{
@@ -25,7 +31,7 @@
 
 .registerBox{
     height: 12em;
-    width: 25em;
+    width: 17em;
     background-color: white;
     border-radius: 2em;
     display: flex;
@@ -65,18 +71,21 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .BtnAlignItems{
+    display: flex;
+    justify-content: center;
+  }
   
   .loginButton{
-    height: 3em;
-    margin: 0 12em;
-    border-radius: 2em;
     border: none;
+    padding: 1em;
+    border-radius: 2em;
     background-color: midnightblue;
-    color: white;
-    font-size: 0.8em;
     font-weight: 500;
+    width: 11em;
     cursor: pointer;
-    margin-top: 1.5em;
+    color: white;
     transition-property: background-color;
     transition-duration: 1s;
     transition-timing-function: ease-out;
@@ -87,19 +96,18 @@
   }
 
   .loginButtonRed{
-    height: 3em;
-    margin: 0 12em;
-    border-radius: 2em;
     border: none;
+    padding: 1em;
+    border-radius: 2em;
     background-color: #BB1313;
-    color: white;
-    font-size: 0.8em;
     font-weight: 500;
+    width: 11em;
     cursor: pointer;
-    margin-top: 1.5em;
+    color: white;
     transition-property: background-color;
     transition-duration: 1s;
     transition-timing-function: ease-out;
+    margin-bottom: 0.5em;
   }
 
   .loginButtonRed:hover{
@@ -120,5 +128,5 @@
 .profileButton{
     display: flex;
     flex-direction: column;
-    width: 27em;
+    align-items: center;
 }

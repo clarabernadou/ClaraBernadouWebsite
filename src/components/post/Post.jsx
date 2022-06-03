@@ -3,24 +3,30 @@ import "./post.css";
 //Import utils
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-//Import icons
-import { MoreVert } from "@mui/icons-material";
 import Comment from "../comment/Comment";
 import ShareComment from "../shareComment/shareComment";
+//Import icons
+import { MoreVert } from "@mui/icons-material";
 
-export default function Post({ post }) {
+export default function Post( props ) {
   const [showBtn, setShowBtn] = useState(true);
   useEffect(() => {
       setShowBtn(false);
   }, []);
 
+  const post = props.post
   const id = post.id
 
   const deletePost = async(e) => {
     e.preventDefault() //To prevent the default event
-
+    //Add the config
+    const config = {
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }
     //Recovery the backend with Axios
-    const deleteResponse = await axios.delete(`http://localhost:8080/api/publication/delete/${id}`);
+    const deleteResponse = await axios.delete(`http://localhost:8080/api/publication/delete/${id}`, config);
     if(deleteResponse){
       window.location.reload(false);
     }else{
@@ -60,7 +66,7 @@ export default function Post({ post }) {
         </div>
       </div>
       <hr />
-      <ShareComment publicationId={post.id} />
+      <ShareComment publicationId={post.id} setPosts={props.setPosts} posts={props.posts}/>
       {post.comments.map((c) => (
         <Comment key={c.id} comment={c} />
       ))}

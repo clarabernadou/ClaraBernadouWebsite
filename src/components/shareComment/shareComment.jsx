@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import axios from "axios";
 
 // Create a function
-export default function Share(props) {
+export default function ShareComment(props) {
   const [descriptionComment, setDescriptionComment] = useState('');
+  const setPosts = props.setPosts
+  console.log(setPosts);
 
-  const comment = async (e) => {
+  const postComment = async (e) => {
     e.preventDefault(); //To prevent the default event
     //Add the config
     const config = {
@@ -15,6 +17,8 @@ export default function Share(props) {
       }
     }
     console.log(config);
+    console.log("Props posts console.log")
+    console.log(props.posts);
 
       //Recovery the backend with Axios
       const response = await axios.post(`http://localhost:8080/api/:publicationId/comments`, {
@@ -24,12 +28,15 @@ export default function Share(props) {
       }, config);
       console.log(response);
 
+      props.setPosts((oldState) => { 
+        const posts = [...oldState]
+        console.log(posts)
+        const index = posts.findIndex(post => post.id === response.data.publicationId)
+        posts[index].comments.push(response.data)
+        console.log('New post', posts)
+        return posts
+      });
       setDescriptionComment('')
-  }
-
-  const reload = async (e) => {
-    e.preventDefault();
-    window.location.reload(false);
   }
   return (
       <div className="shareWrapper">
@@ -40,7 +47,7 @@ export default function Share(props) {
             </div>
           </div>
         </div>
-        <form>
+        <form onSubmit={(e) => { postComment(e)}}>
           <div className="postInput">
             <input
               type="text"
@@ -50,13 +57,6 @@ export default function Share(props) {
               aria-label='content-input'
               className="shareInput"
             />
-          </div>
-            <div className="postButton">
-              <button 
-                onClick={(e) => { comment(e), reload(e)}}
-                className="shareButton">
-                Comment
-              </button>
             </div>
           </form>
       </div>

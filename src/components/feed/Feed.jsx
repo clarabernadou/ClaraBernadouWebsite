@@ -12,13 +12,14 @@ export default function Feed(props) {
   //Use effect which launches the action as soon as the page loads
   useEffect(() => {
     async function fetchData(){
-      let data = await fetch('http://localhost:8080/api/publications') //Recovery data
+    //Add the config
+    const config = {
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }
+      let data = await fetch('http://localhost:8080/api/publications', config) //Recovery data
       data = await data.json()
-
-      //TEST
-      console.log('-----------------------------------------')
-      console.log('Data console.log (return all publications) ⬇️')
-      console.log(data);
 
       props.setPosts(data)
     }
@@ -36,7 +37,7 @@ export default function Feed(props) {
         <Share setPosts={props.setPosts} posts={props.posts} username={username} />
         <div className="posts">
           {props.posts.map((p) => (
-            <Post key={p.id} post={p} />
+            <Post key={p.id} post={p} posts={props.posts} setPosts={props.setPosts}/>
           ))}
         </div>
       </div>

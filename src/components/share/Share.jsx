@@ -11,12 +11,6 @@ export default function Share(props) {
 
   const post = async (e) => {
     e.preventDefault(); //To prevent the default event
-    //Add the config
-    // const config = {
-    //   headers: {
-    //      "Content-Type": "application/json"
-    //    }
-    // }
 
     //Form for push infos to array in database
     let form = new FormData()
@@ -27,19 +21,14 @@ export default function Share(props) {
 
     console.log(form);
 
-    //TEST
-    console.log('-----------------------------------------')
-    console.log('Form data console.log ⬇️')
-    console.log(form.data)
-    console.log('-----------------------------------------')
-    console.log('SelectedFile console.log (image) ⬇️');
-    console.log(selectedFile)
-
       //Recovery the backend with Axios
       const response = await axios({
         method: "post",
         baseURL: `http://localhost:8080/api/publication/create`,
-        headers: {'Content-Type' : 'multipart/form-data'},
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type' : 'multipart/form-data'
+        },
         data: form
       })
 
@@ -47,12 +36,10 @@ export default function Share(props) {
       console.log('-----------------------------------------')
       console.log('Response data console.log ⬇️')
       console.log(response.data)
-
-
-      props.setPosts([...props.posts, response.data])
       
       setDescription('')
       setSelectedFile('')
+      window.location.reload();
   }
   return (
     <div className="share">

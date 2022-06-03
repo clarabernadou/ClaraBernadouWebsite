@@ -89,14 +89,16 @@ export default function Profile() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <button
-                type="submit" 
-                className="loginButton"
-                onClick={ modifyAccount }
-                disabled={!email, !username}
-                >
-                  Modify
-                </button>
+              <div className="BtnAlignItems">
+                <button
+                  type="submit" 
+                  className="loginButton"
+                  onClick={ modifyAccount }
+                  disabled={!email, !username}
+                  >
+                    Modify
+                  </button>
+              </div>
           </div>
         </form>
         <hr />
