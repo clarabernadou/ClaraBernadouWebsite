@@ -34,7 +34,7 @@ export default function Post( props ) {
     const deleteResponse = await axios.delete(`http://localhost:8080/api/publication/delete/${id}`, config);
     //Create condition for reload if deleteResponse is ok, else error
     if(deleteResponse){
-      window.location.reload(false);
+      window.location.reload();
     }else{
       console.error("error");
     }
@@ -71,10 +71,12 @@ export default function Post( props ) {
         </div>
       </div>
       <hr />
-      <ShareComment publicationId={post.id} setPosts={props.setPosts} posts={props.posts}/>
-      {post.comments.map((c) => (
-        <Comment key={c.id} comment={c} />
-      ))}
+      <ShareComment publicationId={id} setPosts={props.setPosts} />
+      {[...post.comments]?.reverse().map((c) => {
+        return (
+          <Comment key={c.id} comment={c} />
+        )
+      })}
     </div>
   );
 }

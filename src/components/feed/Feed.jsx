@@ -8,6 +8,8 @@ import "./feed.css";
 export default function Feed(props) {
   //Define username with localStorage
   const username = localStorage.getItem('username');
+  //Define posts
+  const posts = props.posts
   //Add use effect which launches the action as soon as the page loads
   useEffect(() => {
     async function fetchData(){
@@ -24,16 +26,22 @@ export default function Feed(props) {
 
       props.setPosts(data)
     }
+    //Call fetchData
     fetchData();
   },[])
+
+
+  
   return (
     <div className="feed">
       <div className="feedWrapper">
         <Share setPosts={props.setPosts} posts={props.posts} username={username} />
         <div className="posts">
-          {props.posts.map((p) => (
-            <Post key={p.id} post={p} posts={props.posts} setPosts={props.setPosts}/>
-          ))}
+          {[...posts].reverse().map((p) => {
+            return(
+              <Post key={p.id} post={p} setPosts={props.setPosts}/>
+            )
+          })}
         </div>
       </div>
     </div>

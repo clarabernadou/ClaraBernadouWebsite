@@ -5,12 +5,6 @@ import axios from "axios";
 export default function ShareComment(props) {
   //Create state for store description
   const [descriptionComment, setDescriptionComment] = useState('');
-  //Define setPosts
-  const setPosts = props.setPosts
-  
-  //TEST
-  console.log('SetPosts console.log ⬇️')
-  console.log(setPosts);
 
   //Add async function for create post comment 
   const postComment = async (e) => {
@@ -21,19 +15,24 @@ export default function ShareComment(props) {
           'Authorization': `Bearer ${localStorage.getItem('token')}`//Authorization with token stored in localStorage
       }
     }
+
+      console.log("1");
       //Recovery the backend with Axios
       const response = await axios.post(`http://localhost:8080/api/:publicationId/comments`, {
         username: localStorage.getItem('username'),
         descriptionComment: descriptionComment,
         publicationId: props.publicationId,
       }, config);
+      console.log("2");
 
-      props.setPosts((oldState) => { 
-        const posts = [...oldState] //Define posts is all old posts
-        const index = posts.findIndex(post => post.id === response.data.publicationId) //Define the index with the elements and returns the index of the first element of the array with the exact id of the data publication.
-        posts[index].comments.push(response.data) //In posts push comments with response data
-        return posts
-      });
+      props.setPosts((oldState) => {
+        const posts = [...oldState]
+        const index = posts.findIndex(post => post.id === response.data.publicationId)
+        posts[index].comments.push(response.data)
+        console.log('new state', posts)
+          return posts
+        })
+      console.log("3");
       //Call state
       setDescriptionComment('')
   }

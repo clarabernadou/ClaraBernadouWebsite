@@ -31,16 +31,13 @@ export default function Share(props) {
         data: form
       })
 
-      //TEST
-      console.log('Create publication ⬇️')
-      console.log(response)
+      props.setPosts([...props.posts, response.data]);
       
       //Call state
       setDescription('')
       setSelectedFile('')
 
       //Reload page for appear publication
-      window.location.reload();
   }
   return (
     <div className="share">

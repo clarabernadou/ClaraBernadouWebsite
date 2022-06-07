@@ -4,7 +4,7 @@
 
 .posts {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 /* ################ MEDIA QUERY MOBILE ################ */
 @media screen and (min-width: 320px) and (max-width:767px) {
