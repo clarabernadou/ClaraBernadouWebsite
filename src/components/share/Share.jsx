@@ -36,8 +36,6 @@ export default function Share(props) {
       //Call state
       setDescription('')
       setSelectedFile('')
-
-      //Reload page for appear publication
   }
   return (
     <div className="share">

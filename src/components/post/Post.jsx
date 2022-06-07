@@ -74,7 +74,7 @@ export default function Post( props ) {
       <ShareComment publicationId={id} setPosts={props.setPosts} />
       {[...post.comments]?.reverse().map((c) => {
         return (
-          <Comment key={c.id} comment={c} />
+          <Comment publicationId={post.id} setPosts={props.setPosts} key={c.id} comment={c} />
         )
       })}
     </div>

@@ -15,24 +15,20 @@ export default function ShareComment(props) {
           'Authorization': `Bearer ${localStorage.getItem('token')}`//Authorization with token stored in localStorage
       }
     }
+    //Recovery the backend with Axios
+    const response = await axios.post(`http://localhost:8080/api/:publicationId/comments`, {
+      username: localStorage.getItem('username'),
+      descriptionComment: descriptionComment,
+      publicationId: props.publicationId,
+    }, config);
 
-      console.log("1");
-      //Recovery the backend with Axios
-      const response = await axios.post(`http://localhost:8080/api/:publicationId/comments`, {
-        username: localStorage.getItem('username'),
-        descriptionComment: descriptionComment,
-        publicationId: props.publicationId,
-      }, config);
-      console.log("2");
-
-      props.setPosts((oldState) => {
-        const posts = [...oldState]
-        const index = posts.findIndex(post => post.id === response.data.publicationId)
-        posts[index].comments.push(response.data)
-        console.log('new state', posts)
-          return posts
-        })
-      console.log("3");
+    props.setPosts((oldState) => {
+      const posts = [...oldState]
+      const index = posts.findIndex(post => post.id === response.data.publicationId)
+      posts[index].comments.push(response.data)
+      console.log('new state', posts)
+        return posts
+      })
       //Call state
       setDescriptionComment('')
   }

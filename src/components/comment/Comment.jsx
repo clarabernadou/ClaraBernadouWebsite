@@ -7,7 +7,7 @@ import axios from "axios";
 //Import icons
 import { MoreVert } from "@mui/icons-material";
 
-export default function Comment({ comment }) {
+export default function Comment(props) {
   //Create a state to make appear and disappear a button
   const [showBtn, setShowBtn] = useState(true);
   //Add use effect which launches the action as soon as the page loads
@@ -15,8 +15,12 @@ export default function Comment({ comment }) {
       setShowBtn(false);
   }, []);
 
-  //Define id with comment id
-  const id = comment.id
+  //Define comment id 
+  const commentId = props.comment.id
+  //Define publication id
+  const publicationId = props.publicationId
+  //Define comment
+  const comment = props.comment
 
   //Add async function for delete comment
   const deleteComment = async(e) => {
@@ -28,13 +32,18 @@ export default function Comment({ comment }) {
       }
     }
     //Recovery the backend with Axios
-    const deleteResponse = await axios.delete(`http://localhost:8080/api/comments/delete/${id}`, config);
-    //Create condition for reload if deleteResponse is ok, else error
-    if(deleteResponse){
-      window.location.reload(false);
-    }else{
-      console.error("error");
-    }
+    const response = await axios.delete(`http://localhost:8080/api/${publicationId}/comments/delete/${commentId}`, config);
+    // -------------------------------------
+    console.log("Response console.log ⬇️")
+    console.log(response)
+    // -------------------------------------
+    props.setPosts((oldState) => {
+      const posts = [...oldState]
+      const index = posts.findIndex(post => post.id === publicationId )
+      const comIndex = posts[index].comments.findIndex(comment => comment.id === commentId )
+      posts[index].comments.splice(comIndex, 1)
+    return posts
+  })
   }
   return (
   <div className="commentContainer">
