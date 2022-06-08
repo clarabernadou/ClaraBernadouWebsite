@@ -37,7 +37,6 @@ const register = async (e) => {
   setPassword('')
 
 }
-
 //Navigate to sign in page
 const NotHaveAccount = e => {
   e.preventDefault() //To prevent the default event
@@ -73,6 +72,7 @@ return (
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <p className="passwordInfos">(Set a password between 8 and 100 characters)</p>
           <button  
             className="signHavAcc"
             onClick={ NotHaveAccount }
