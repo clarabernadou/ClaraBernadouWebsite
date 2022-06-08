@@ -1,4 +1,4 @@
-# Frontend Groupomania
+# Frontend Groupomania (old version before may)
 
 This project is create with React
 

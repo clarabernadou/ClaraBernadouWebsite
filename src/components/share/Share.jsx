@@ -67,12 +67,6 @@ export default function Share(props) {
                 aria-label="file-input"
                 onChange={(e) => { setSelectedFile(e.target.files[0]) }}
               />
-              <label 
-                className="shareIcon"
-                htmlFor="file" 
-                aria-label="icon-upload"
-              >
-              </label>
             </div>
             <div className="postButton">
               <button 

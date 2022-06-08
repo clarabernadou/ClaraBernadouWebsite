@@ -21,7 +21,7 @@ export default function Topbar() {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <img className="logo" onClick={home} src={Logo} />
+        <img className="logo" onClick={home} src={Logo} alt="Logo groupomania"/>
       </div>
       <div className="topbarRight">
         <img src={Random} alt="" className="topbarImg" onClick={profile}/>

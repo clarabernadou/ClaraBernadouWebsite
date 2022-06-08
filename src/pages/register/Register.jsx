@@ -48,7 +48,7 @@ return (
   <div className="sign">
     <div className="signWrapper">
       <header className="signHeader">
-        <img className="signLog" src={Logo} />
+        <img className="signLog" src={Logo} alt="Logo Groupomania" />
       </header>
       <div className="signBody">
         <form className="signForm">
