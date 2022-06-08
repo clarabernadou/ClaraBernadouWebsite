@@ -35,9 +35,14 @@ export default function Profile() {
   const modifyAccount = async(e) => {
     e.preventDefault() //To prevent the default event
     const id = localStorage.getItem('userId'); //Recovery userId in localstorage
+    const config = {
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}` //Authorization with token stored in localStorage
+      }
+    }
 
     //Recovery the backend with Axios
-    const response = await axios.put(`http://localhost:8080/api/auth/profile/update/${id}`, {username, email})
+    const response = await axios.put(`http://localhost:8080/api/auth/profile/update/${id}`, {username, email}, config)
 
     //TEST
     console.log('Response console.log for update profile ⬇️')
@@ -52,16 +57,21 @@ export default function Profile() {
   const deleteAccount = async(e) => {
     e.preventDefault() //To prevent the default event
     const id = localStorage.getItem('userId'); //Define id with userId in localstorage
-
+    //Add config
+    const config = {
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}` //Authorization with token stored in localStorage
+      }
+    }
     //Recovery the backend with Axios
-    const response = await axios.delete(`http://localhost:8080/api/auth/profile/delete/${id}`)
+    const response = await axios.delete(`http://localhost:8080/api/auth/profile/delete/${id}`, config)
+
     //Create a condition if have response navigate, else error
     if(response){
       return window.location.href = "/signin"; //Navigate to sign in page
     }else{
       console.log("Error")
     }
-
     //Call state
     setUsername('')
     setEmail('')
