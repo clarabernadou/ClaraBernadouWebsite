@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/ClaraBernadouWebsite/static/css/main.b58a705c.css",
+    "main.js": "/ClaraBernadouWebsite/static/js/main.e08792be.js",
+    "static/media/CB.png": "/ClaraBernadouWebsite/static/media/CB.5dd48fb7d908e0ba5edd.png",
+    "index.html": "/ClaraBernadouWebsite/index.html",
+    "main.b58a705c.css.map": "/ClaraBernadouWebsite/static/css/main.b58a705c.css.map",
+    "main.e08792be.js.map": "/ClaraBernadouWebsite/static/js/main.e08792be.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b58a705c.css",
+    "static/js/main.e08792be.js"
+  ]
+}
