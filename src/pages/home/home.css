@@ -1,4 +1,97 @@
 .homeContainer{
     display: flex;
+    flex-direction: column;
     width: 100%;
+}
+
+.homeTitleContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5em;
+    color: #9900EF;
+    transition: 1.5s;
+}
+
+.homeTitleContainer:hover{
+    color: #8ED1FC;
+}
+
+h1, h2{
+    font-family: 'Abril Fatface', cursive;
+}
+
+h1{
+    font-size: 5em;
+    text-transform: uppercase;
+    margin-bottom: -0.2em;
+}
+
+h2{
+    font-size: 2.5em;
+}
+
+article{
+    width: 435px;
+    height: 200px;
+    background: #FFFFFF;
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+article:hover{
+    color: #9900EF;
+}
+
+.homeArticles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2em;
+    width: 100%;
+    background: linear-gradient(89.45deg, #8ED1FC 2.79%, #8FBBFB 24.89%, #91A0F9 43.69%, #963FF3 70.95%, #9900EF 93.04%);
+    padding: 7em 0em;
+    margin: 5em 0em;
+
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    margin: -4em 1em 1em 1em;
+    gap: 0.7em;
+}
+
+.social{
+    height: 3.5em;
+}
+
+/* ################ MEDIA QUERY MOBILE ################ */
+@media screen and (min-width: 320px) and (max-width:767px) {
+    h1{
+        font-size: 3.5em;
+    }
+    
+    h2{
+        font-size: 1.5em;
+    }
+
+    article{
+        width: 290px;
+        height: 155px;
+        font-size: 1.5em;
+    }
+
+    .social{
+        height: 2.5em;
+    }
 }

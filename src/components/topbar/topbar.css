@@ -1,27 +1,38 @@
 .topbarContainer {
-  height: 7em;
   width: 100%;
-  background-color: midnightblue;
+  background-color: white;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   position: sticky;
   top: 0;
   z-index: 999;
 }
 
+.topbarLR{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .topbarLeft {
-  margin-left: 2em;
+  margin-left: 0.3em;
 }
 
 .logo {
-  width: 13em;
+  width: 7em;
   color: white;
   cursor: pointer;
 }
 
 .topbarRight {
-  margin-right: 2em;
+  margin-right: 1em;
+  display: flex;
+  gap: 1.5em;
+  font-size: 1.1em;
+}
+
+.topbarNav:hover {
+  font-weight: bold;
 }
 
 .topbarImg {
@@ -32,18 +43,18 @@
   cursor: pointer;
 }
 
+hr{
+  opacity: 0.2;
+}
+
 /* ################ MEDIA QUERY MOBILE ################ */
 @media screen and (min-width: 320px) and (max-width:767px) {
   .topbarContainer {
     height: 4em;
   }
 
-  .topbarLeft {
-    margin-left: 1em;
-  }
-
   .topbarRight{
-    margin-right: 1em;
+    font-size: 0.7em;
   }
 
   .topbarImg {

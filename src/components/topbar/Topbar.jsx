@@ -2,10 +2,8 @@
 import "./topbar.css";
 //Import utils
 import React from "react";
-//Import images
-import Random from "../../assets/personne-random.png";
 //Import logo
-import Logo from "../../assets/logo/groupomania-logo.png"
+import Logo from "../../assets/logo/CB.png"
 
 export default function Topbar() {
   //Add async function for navigate on click
@@ -13,19 +11,20 @@ export default function Topbar() {
     e.preventDefault() //To prevent the default event
     window.location.href = "/"; //Navigate to home page
   }
-  //Add async function for navigate on click
-  const profile = e => {
-    e.preventDefault() //To prevent the default event
-    window.location.href = "/profile"; //Navigate to profile page
-  }
   return (
     <div className="topbarContainer">
-      <div className="topbarLeft">
-        <img className="logo" onClick={home} src={Logo} alt="Logo groupomania"/>
+      <div className="topbarLR">
+        <div className="topbarLeft">
+          <img className="logo" onClick={home} src={Logo} alt="Logo CB Website"/>
+        </div>
+        {/* <nav className="topbarRight">
+          <div className="topbarNav">Projets</div>
+          <div className="topbarNav">Parcours</div>
+          <div className="topbarNav">CV</div>
+        </nav> */}
       </div>
-      <div className="topbarRight">
-        <img src={Random} alt="" className="topbarImg" onClick={profile}/>
-      </div>
+      <hr />
     </div>
+    
   );
 }
